@@ -49,6 +49,10 @@ export function CodeEditor({
         }
     }, [])
 
+    useEffect(() => {
+        setValue(code)
+    }, [code])
+
     const handleCopy = async () => {
         await navigator.clipboard.writeText(value)
         setCopied(true)

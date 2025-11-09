@@ -3,14 +3,16 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Home, Layers, Boxes, NotebookPen } from "lucide-react"
+import { Home, Layers, Boxes, NotebookPen, LogOut } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { signOut } from "next-auth/react"
 
 const navItems = [
-    { href: "/dashboard", label: "Dashboard", icon: Home },
-    { href: "/stacks", label: "Stacks", icon: Layers },
-    { href: "/modules", label: "Modules", icon: Boxes },
-    { href: "/lessons", label: "Lessons", icon: NotebookPen },
+    { href: "/code-trail/dashboard", label: "Dashboard", icon: Home },
+    { href: "/code-trail/stacks", label: "Stacks", icon: Layers },
+    // { href: "/code-trail/modules", label: "Modules", icon: Boxes },
+    // { href: "/code-trail/lessons", label: "Lessons", icon: NotebookPen },
+    { href: "/code-trail/signOut", label: "Sign Out", icon: LogOut, action: "signOut" }
 ]
 
 export function Sidebar({ onClose }: { onClose: () => void }) {
@@ -53,19 +55,27 @@ export function Sidebar({ onClose }: { onClose: () => void }) {
                                     whileHover={{ x: 6 }}
                                     whileTap={{ scale: 0.97 }}
                                 >
-                                    <Link
-                                        href={item.href}
-                                        className={cn(
-                                            "group flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
-                                            active
-                                                ? "bg-accent text-accent-foreground"
-                                                : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"
-                                        )}
-                                        onClick={onClose} // auto-close when clicking a link
-                                    >
+                                    {item?.action === 'signOut' ? <div onClick={() => signOut({ callbackUrl: "/auth/login" })} className={cn(
+                                        "group flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
+                                        active
+                                            ? "bg-accent text-accent-foreground"
+                                            : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"
+                                    )}>
+                                        <Icon className="h-4 w-4 transition-transform group-hover:scale-110" />
+                                        <span>{item.label}</span></div> : <Link
+                                            href={item.href}
+                                            className={cn(
+                                                "group flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
+                                                active
+                                                    ? "bg-accent text-accent-foreground"
+                                                    : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"
+                                            )}
+                                            onClick={onClose} // auto-close when clicking a link
+                                        >
                                         <Icon className="h-4 w-4 transition-transform group-hover:scale-110" />
                                         <span>{item.label}</span>
-                                    </Link>
+                                    </Link>}
+
                                 </motion.div>
                             )
                         })}

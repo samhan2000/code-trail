@@ -1,10 +1,10 @@
 "use client"
 
-import * as React from "react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { CodeEditor } from "../ui/code-editor"
+import { useEffect, useState } from "react"
 
 export type LessonFormValues = {
     title: string
@@ -17,11 +17,19 @@ export function LessonForm({ initialValues, onSubmit, onCancel }: {
     onSubmit: (values: LessonFormValues) => void
     onCancel?: () => void
 }) {
-    const [values, setValues] = React.useState<LessonFormValues>({
+    const [values, setValues] = useState<LessonFormValues>({
         title: initialValues?.title ?? "",
         notes: initialValues?.notes ?? "",
         code: initialValues?.code ?? "",
     })
+
+    useEffect(() => {
+        setValues({
+            title: initialValues?.title ?? "",
+            notes: initialValues?.notes ?? "",
+            code: initialValues?.code ?? "",
+        })
+    }, [initialValues])
 
     function handleChange<K extends keyof LessonFormValues>(key: K, value: LessonFormValues[K]) {
         setValues((v) => ({ ...v, [key]: value }))

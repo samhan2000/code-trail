@@ -19,6 +19,7 @@ const NestOIDCProvider = {
     userinfo: `${process.env.NEST_OIDC_ISSUER}/userinfo`,
 
     profile(profile) {
+        console.log(profile, "Profile")
         return {
             id: profile.sub,
             name: profile.name,
@@ -49,6 +50,7 @@ export const authOptions: NextAuthOptions = {
                 token.provider = account.provider;
                 token.accessToken = account.access_token;
                 token.idToken = account.id_token;
+                token.userId = profile?.sub
             }
             return token;
         },
@@ -63,12 +65,17 @@ export const authOptions: NextAuthOptions = {
             session.idToken = idToken;
             session.provider = provider;
 
+            if (session.user) {
+                session.user.userId = token.userId
+            }
+
             return session;
         }
     },
 
     pages: {
-        signIn: "/auth/login"
+        signIn: "/auth/login",
+        newUser: "/code-trail/dashboard"
     },
 
     debug: process.env.NODE_ENV === "development",

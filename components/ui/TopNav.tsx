@@ -1,3 +1,5 @@
+import { LogOut } from "lucide-react"
+
 const TopNav = ({ onModalClick }: { onModalClick: () => void }) => {
     return (
         <header className="border-b bg-card border-black/[.08] mb-6">

@@ -83,7 +83,7 @@ model Lesson {
   description  String?
   notes        String?
   code         String?
-  progress     Int        @default(0)
+  progress     Int?        @default(0)
   orderIndex   Int?       @map("order_index")
   lastVisited  DateTime?  @map("last_visited")
   createdAt    DateTime   @default(now()) @map("created_at")

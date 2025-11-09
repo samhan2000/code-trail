@@ -9,11 +9,14 @@ interface InitializerProps {
 
 const Initializer = ({ userDetails }: InitializerProps) => {
 
-    const { handleStateChange } = useGlobalState()
+    const { state, handleStateChange } = useGlobalState()
 
     useEffect(() => {
+        console.log(userDetails, "User details in Initializer")
         handleStateChange("userId", userDetails.userId)
+        handleStateChange("email", userDetails.email)
         handleStateChange("name", userDetails.name)
+        console.log(state, "State in Initializer")
     }, [])
 
     return null

@@ -11,6 +11,9 @@ import Initializer from "@/components/Initializer";
 import { Toaster } from "@/components/ui/toaster";
 import { ToastProviderWrapper } from "@/components/ui/useToast";
 import Footer from "@/components/ui/footer";
+import { SessionProvider } from "next-auth/react";
+import { motion } from "framer-motion";
+import { PageTransitionWrapper } from "./common/components/PageTransitionWrapper";
 
 
 const geistSans = Geist({
@@ -34,34 +37,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const [modalOpen, setModalOpen] = useState(false)
-
-  const [userDetails, setUserDetails] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
-  const handleModalClick = () => {
-    setModalOpen(!modalOpen)
-  }
-
-  useEffect(() => {
-    setLoading(true)
-    const getUserDetails = () => {
-      const res = { "userId": "user-1", "name": "User 1" }
-      setUserDetails(res)
-    }
-
-    getUserDetails()
-    setLoading(false)
-
-  }, [])
-
-  if (loading) return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      ></body>
-    </html>
-  )
+  // if (loading) return (
+  //   <html lang="en">
+  //     <body
+  //       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+  //     ></body>
+  //   </html>
+  // )
 
 
   return (
@@ -69,18 +53,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <GlobalState>
-          <Toaster />
-          <ToastProviderWrapper>
-            <TopNav onModalClick={handleModalClick} />
-            <Initializer userDetails={userDetails} />
-            {modalOpen && <Sidebar onClose={handleModalClick} />}
-            <div style={{ width: '80%', margin: '0 auto' }}>
+        <SessionProvider>
+          <GlobalState>
+            <Toaster />
+            <ToastProviderWrapper>
+              {/* <PageTransitionWrapper> */}
               {children}
-            </div>
-          </ToastProviderWrapper>
-        </GlobalState>
-        <Footer />
+              {/* </PageTransitionWrapper> */}
+            </ToastProviderWrapper>
+          </GlobalState>
+        </SessionProvider>
       </body>
     </html>
   );

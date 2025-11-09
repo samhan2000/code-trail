@@ -22,6 +22,7 @@
     "@radix-ui/react-toast": "^1.2.15",
     "@types/next-auth": "^3.13.0",
     "@uiw/react-codemirror": "^4.25.2",
+    "axios": "^1.13.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.22",
