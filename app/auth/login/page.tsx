@@ -1,21 +1,34 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
-import { Mail, Lock, Chrome } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Lock, Chrome, User } from "lucide-react";
+import { useToast } from "@/components/ui/useToast";
 
 export default function LoginPage() {
     const searchParams = useSearchParams();
     const redirect_uri = searchParams.get("redirect_uri");
     const state = searchParams.get("state");
     const client_id = searchParams.get("client_id");
+    const errorParam = searchParams.get("error");
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
+    const { toast } = useToast()
     const router = useRouter()
+
+    useEffect(() => {
+        if (errorParam) {
+            toast({
+                title: "Error!",
+                description: decodeURIComponent(errorParam)
+            })
+        }
+    }, [errorParam])
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -75,7 +88,7 @@ export default function LoginPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="relative">
-                        <Mail className="absolute left-3 top-3 w-4 h-4 text-white/50" />
+                        <User className="absolute left-3 top-3 w-4 h-4 text-white/50" />
                         <input
                             type="text"
                             placeholder="username"

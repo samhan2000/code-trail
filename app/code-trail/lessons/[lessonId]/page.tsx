@@ -23,7 +23,7 @@ const page = ({ params }: { params: { lessonId: string } }) => {
                 userId: state.userId
             }
             const lessonDetails = await api.post("/lessons/getLessonBySlug", payload).then(d => d.data)
-            setModuleId(lessonDetails.moduleId)
+            setModuleId(lessonDetails.module.slug)
             console.log(lessonDetails, "Lesson details")
             if (lessonDetails) {
                 setLessonDetails(lessonDetails)

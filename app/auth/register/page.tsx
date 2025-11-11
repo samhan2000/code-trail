@@ -6,6 +6,7 @@ import { Mail, Lock, Chrome, User, FolderPen } from "lucide-react";
 import { useToast } from "@/components/ui/useToast";
 import api from "@/lib/axios-client";
 import { useGlobalState } from "@/app/context/GlobalState";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
     const [formValues, setFormValues] = useState({
@@ -51,7 +52,7 @@ export default function LoginPage() {
                 title: "Success!",
                 description: "User added succesfully"
             })
-            router.push("/auth/login")
+            signIn()
         } catch (err: any) {
             setLoading(false)
             loaderStack(false)

@@ -106,11 +106,11 @@ export function CodeEditor({
                 </div>
 
                 <div className="flex gap-2">
-                    <Button variant="ghost" size="sm" onClick={handleFormat}>
+                    <Button className="cursor-pointer" variant="ghost" type="button" size="sm" onClick={handleFormat}>
                         <Braces className="w-4 h-4 mr-1" />
                         Format
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={handleCopy}>
+                    <Button className="cursor-pointer" type="button" variant="ghost" size="sm" onClick={handleCopy}>
                         {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                         {copied ? "Copied" : "Copy"}
                     </Button>

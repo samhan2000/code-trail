@@ -7,10 +7,10 @@ const api = axios.create({
 
 console.log(process.env.NEXT_PUBLIC_API_URL, "BASE URL")
 
-// api.interceptors.request.use(async (config) => {
-//     const token = localStorage.getItem("access_token");
-//     if (token) config.headers.Authorization = `Bearer ${token}`;
-//     return config;
-// });
+api.interceptors.request.use(async (config) => {
+    const token = localStorage.getItem("access_token");
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+    return config;
+});
 
 export default api;

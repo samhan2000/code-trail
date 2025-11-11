@@ -55,8 +55,8 @@ export function Sidebar({ onClose }: { onClose: () => void }) {
                                     whileHover={{ x: 6 }}
                                     whileTap={{ scale: 0.97 }}
                                 >
-                                    {item?.action === 'signOut' ? <div onClick={() => signOut({ callbackUrl: "/auth/login" })} className={cn(
-                                        "group flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
+                                    {item?.action === 'signOut' ? <div onClick={() => signOut()} className={cn(
+                                        "group cursor-pointer flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
                                         active
                                             ? "bg-accent text-accent-foreground"
                                             : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"

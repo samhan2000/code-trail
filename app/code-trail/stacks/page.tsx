@@ -86,12 +86,12 @@ export default function StacksPage() {
                     <Card key={stack.id}>
                         <CardHeader>
                             <CardTitle>
-                                <Link href={`/stacks/${stack.id}`} className="hover:underline">{stack.name}</Link>
+                                <Link href={`/code-trail/stacks/${stack.slug}`} className="hover:underline">{stack.name}</Link>
                             </CardTitle>
                             <CardDescription>{stack.description}</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <Link href={`/stacks/${stack.id}`} className="text-sm text-primary hover:underline">View modules →</Link>
+                            <Link href={`/code-trail/stacks/${stack.slug}`} className="text-sm text-primary hover:underline">View modules →</Link>
                         </CardContent>
                     </Card>
                 ))}

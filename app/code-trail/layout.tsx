@@ -24,10 +24,16 @@ export default function RootLayout({
 
     const { data: session, status } = useSession();
 
+    const { handleStateChange } = useGlobalState()
+
     console.log(session, status, "Session And status")
+
 
     useEffect(() => {
 
+        if (session?.accessToken) {
+            localStorage.setItem("access_token", session.accessToken)
+        }
 
         if (status === "unauthenticated") {
             signIn("nest-oidc");

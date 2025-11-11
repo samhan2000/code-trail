@@ -1,4 +1,5 @@
 import { LogOut } from "lucide-react"
+import Search from "./search"
 
 const TopNav = ({ onModalClick }: { onModalClick: () => void }) => {
     return (
@@ -36,30 +37,7 @@ const TopNav = ({ onModalClick }: { onModalClick: () => void }) => {
                     </div>
 
                     {/* Right section: Search */}
-                    <div className="flex items-center space-x-3 mr-2">
-                        <div className="relative">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground"
-                                aria-hidden="true"
-                            >
-                                <path d="m21 21-4.34-4.34" />
-                                <circle cx="11" cy="11" r="8" />
-                            </svg>
-                            <input
-                                className="flex h-9 w-64 rounded-md border border-input bg-transparent px-3 py-1 pl-10 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                                placeholder="Search lessons, problems, tags..."
-                            />
-                        </div>
-                    </div>
+                    <Search />
                 </div>
             </div>
         </header>

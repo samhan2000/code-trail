@@ -129,7 +129,6 @@ export default function DashboardPage() {
       </div>
 
       {/* Stacks Section */}
-      {/* Stacks Section */}
       {stacks.length > 0 ? (
         <>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -179,7 +178,6 @@ export default function DashboardPage() {
 
 
       {/* Recently Visited Lessons Section */}
-      {/* Recently Visited Lessons Section */}
       {recentLessons.length > 0 ? (
         <div className="space-y-4">
           <h2 className="text-lg font-semibold flex items-center gap-2">
@@ -188,20 +186,20 @@ export default function DashboardPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {recentLessons.map((lesson: any) => (
               <Card key={lesson.id} className="group transition-all hover:-translate-y-0.5 hover:shadow-lg cursor-pointer"
-                onClick={() => router.push(`/code-trail/lessons/${lesson.id}`)}>
+                onClick={() => router.push(`/code-trail/lessons/${lesson.slug}`)}>
                 <CardHeader>
                   <CardTitle className="text-base font-medium">
-                    <Link href={`/code-trail/lessons/${lesson.id}`} className="hover:underline">
+                    <Link href={`/code-trail/lessons/${lesson.slug}`} className="hover:underline">
                       {lesson.title}
                     </Link>
                   </CardTitle>
                   <CardDescription className="text-sm text-muted-foreground">
-                    {lesson.stack} / {lesson.module}
+                    {lesson.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Progress value={lesson.progress} className="mb-2" />
-                  <p className="text-xs text-muted-foreground">Last visited {lesson.lastVisited}</p>
+                  <p className="text-xs text-muted-foreground">Last visited {lesson.lastVisitedAgo}</p>
                 </CardContent>
               </Card>
             ))}
