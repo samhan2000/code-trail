@@ -16,7 +16,6 @@ const Initializer = ({ userDetails }: InitializerProps) => {
         handleStateChange("userId", userDetails.userId)
         handleStateChange("email", userDetails.email)
         handleStateChange("name", userDetails.name)
-        console.log(state, "State in Initializer")
     }, [])
 
     return null

@@ -57,17 +57,23 @@ export default function RootLayout({
         <div className="spinner border-t-2 border-primary rounded-full w-12 h-12 animate-spin"></div>
     </div>
     return (
-        <>
+        <div className="min-h-screen flex flex-col">
             <Initializer userDetails={userDetails} />
             <Loader />
             <TopNav onModalClick={handleModalClick} />
+
             {modalOpen && <Sidebar onClose={handleModalClick} />}
-            <div style={{ width: '80%', margin: '0 auto' }}>
-                {/* <PageTransitionWrapper> */}
-                {children}
-                {/* </PageTransitionWrapper> */}
+
+            <div className="flex-1 w-full flex justify-center">
+                <div className="w-[80%]">
+                    <main className="flex-1">
+                        {children}
+                    </main>
+                </div>
             </div>
+
             <Footer />
-        </>
+        </div>
     );
+
 }

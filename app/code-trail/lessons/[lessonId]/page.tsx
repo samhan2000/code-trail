@@ -24,7 +24,6 @@ const page = ({ params }: { params: { lessonId: string } }) => {
             }
             const lessonDetails = await api.post("/lessons/getLessonBySlug", payload).then(d => d.data)
             setModuleId(lessonDetails.module.slug)
-            console.log(lessonDetails, "Lesson details")
             if (lessonDetails) {
                 setLessonDetails(lessonDetails)
             }
@@ -56,7 +55,6 @@ const page = ({ params }: { params: { lessonId: string } }) => {
         }
 
         const res = await api.post('/lessons/markStatus', payload).then(d => d.data)
-        console.log(res, "Response")
         setLessonDetails(res)
     }
 

@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { Home, Layers, Boxes, NotebookPen, LogOut } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { signOut } from "next-auth/react"
+import { useGlobalState } from "@/app/context/GlobalState"
 
 const navItems = [
     { href: "/code-trail/dashboard", label: "Dashboard", icon: Home },
@@ -15,8 +16,10 @@ const navItems = [
     { href: "/code-trail/signOut", label: "Sign Out", icon: LogOut, action: "signOut" }
 ]
 
+
 export function Sidebar({ onClose }: { onClose: () => void }) {
     const pathname = usePathname()
+    const { state } = useGlobalState()
 
     return (
         <AnimatePresence>
@@ -39,6 +42,11 @@ export function Sidebar({ onClose }: { onClose: () => void }) {
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
                     className="relative z-50 w-64 h-full border-r bg-background/90 backdrop-blur shadow-lg p-2"
                 >
+                    <div className="px-4 pt-4 pb-2">
+                        <p className="text-sm font-medium text-foreground">
+                            Hello <span className="font-semibold">{state?.name},</span>
+                        </p>
+                    </div>
                     <div className="px-4 pb-2 pt-4 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                         Navigation
                     </div>

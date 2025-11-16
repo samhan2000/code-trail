@@ -37,17 +37,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const [loading, setLoading] = useState(true)
-
-  // if (loading) return (
-  //   <html lang="en">
-  //     <body
-  //       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-  //     ></body>
-  //   </html>
-  // )
-
-
   return (
     <html lang="en">
       <body
