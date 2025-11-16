@@ -61,26 +61,29 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const fetchDashboardContent = async () => {
-      const payload = {
-        userId: state.userId
-      }
 
-      try {
-        const res = await api.post('/feature/getDashboardContent', payload).then(r => r.data)
-        setStacks(res.stackSummary)
-        setRecentLessons(res.recentlyVisited)
+      if (state.userId) {
+        const payload = {
+          userId: state.userId
+        }
 
-      } catch (err) {
-        toast({
-          title: "Error!",
-          description: "Error while fetching dasboard content"
-        })
+        try {
+          const res = await api.post('/feature/getDashboardContent', payload).then(r => r.data)
+          setStacks(res.stackSummary)
+          setRecentLessons(res.recentlyVisited)
+
+        } catch (err) {
+          toast({
+            title: "Error!",
+            description: "Error while fetching dasboard content"
+          })
+        }
       }
     }
 
     fetchDashboardContent()
 
-  }, [])
+  }, [state.userId])
 
   const saveNewStack = async (formValues: { name: string, description: string }) => {
     try {
