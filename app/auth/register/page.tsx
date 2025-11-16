@@ -45,7 +45,7 @@ export default function LoginPage() {
         try {
             loaderStack(true)
             setLoading(true)
-            await api.post("/api/oauth/register", formValues)
+            await api.post("/oauth/register", formValues)
             setLoading(false)
             loaderStack(false)
             toast({

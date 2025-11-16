@@ -35,7 +35,7 @@ const Login = () => {
 
         const form = document.createElement("form");
         form.method = "POST";
-        form.action = `/api/oauth/login`;
+        form.action = `/oauth/login`;
 
         const fields = { username, password, redirect_uri, state, client_id };
         Object.entries(fields).forEach(([key, value]) => {
